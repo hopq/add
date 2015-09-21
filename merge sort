@@ -1,0 +1,74 @@
+#include<iostream>
+using namespace std;
+void mergesort(int *,int,int);
+void merging(int *,int,int,int);
+int main()
+{
+    int n,i,a[20];
+    cout<<"enter the size in array:";
+    cin>>n;
+    cout<<"enter the element in array:";
+    for(i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    mergesort(a,0,n-1);
+     cout<<"element in array:";
+    for(int i=0;i<n;i++)
+    {
+        cout<< a[i]<<" ";
+}
+
+}
+
+    void mergesort(int *a,int beg,int endd)
+   {
+        int mid;
+        if(beg<endd)
+        {
+            mid=(int(beg+endd)/2);
+            mergesort(a,beg,mid);
+            mergesort(a,mid+1,endd);
+            merging(a,beg,mid,endd);
+        }
+
+    }
+    void merging(int *a,int lb,int m,int ub)
+    {
+        int i,j,k,c[20],p;
+        i=lb;
+        k=ub;
+        j=m+1;
+        while(i<m&&j<=ub)
+        {
+            if(a[i]<=a[j])
+            {
+                c[k]=a[i];
+                i++;
+
+            }
+            else
+            {
+                c[k]=a[j];
+                j++;
+            }
+            k++;
+        }
+        while(i<=m)
+        {
+            c[k]=a[i];
+            k++;
+            i++;
+        }
+        while(j<=ub)
+        {
+            c[k]=c[j];
+            k++;
+            j++;
+        }
+
+    for(k=lb;k<ub;k++)
+    {
+        a[k]=c[k];
+    }
+    }
